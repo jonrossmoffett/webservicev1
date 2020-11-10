@@ -4,7 +4,18 @@
 		exit;
 	}  */
 	require './vendor/autoload.php';
-	require_once('functions.php');
+	//require_once('functions.php');
+
+
+	spl_autoload_register(function($className){
+		$path = strtolower($className) . ".php";
+		if(file_exists($path)) {
+			require_once($path);
+		} else {
+			echo "File $path is not found.";
+		}
+	});
+
 	$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
 	$logger->info( $_SERVER['HTTP_USER_AGENT']. " Reached index with ip ". $_SERVER['REMOTE_ADDR']);
 	date_default_timezone_set('Australia/Brisbane');

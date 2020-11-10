@@ -1,8 +1,8 @@
   
 <?php 
-	if($_SERVER['HTTP_HOST'] !== 'localhost'){
+/* 	if($_SERVER['HTTP_HOST'] !== 'localhost'){
 		exit;
-	} 
+	}  */
 	require './vendor/autoload.php';
 	$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
 	$logger->info( $_SERVER['HTTP_USER_AGENT']. " Reached index with ip ". $_SERVER['REMOTE_ADDR']);

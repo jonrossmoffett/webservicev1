@@ -4,7 +4,7 @@
 		exit;
 	}  */
 	require './vendor/autoload.php';
-	//require_once('functions.php');
+	require_once('functions.php');
 
 	//$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
 	//$logger->info( $_SERVER['HTTP_USER_AGENT']. " Reached index with ip ". $_SERVER['REMOTE_ADDR']);

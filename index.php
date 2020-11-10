@@ -4,10 +4,8 @@
 		exit;
 	}  */
 	require './vendor/autoload.php';
-	require_once( 'database.php');
 	require_once('functions.php');
 
-	echo "ddd";
 	//$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
 	//$logger->info( $_SERVER['HTTP_USER_AGENT']. " Reached index with ip ". $_SERVER['REMOTE_ADDR']);
 	date_default_timezone_set('Australia/Brisbane');

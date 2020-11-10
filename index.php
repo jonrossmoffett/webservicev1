@@ -4,6 +4,8 @@
 		exit;
 	}  */
 	require './vendor/autoload.php';
+	require './database.php';
+	require 'database.php';
 	require_once('functions.php');
 
 	//$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');

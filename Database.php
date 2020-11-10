@@ -7,7 +7,7 @@ class database{
     private $password = '9cce09313a2575bca71019baaa1c847c82cf154aa66d0962fbc7b1a2ceea5797';
     private $conn;
 
- //ss
+    
 
     public function connect(){
         $this->conn = null;
@@ -17,6 +17,7 @@ class database{
             $this->username,$this->password);
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            echo 'reached';
         }catch(PDOException $e){
             ECHO 'connection error' . $e->getMessage();
         }

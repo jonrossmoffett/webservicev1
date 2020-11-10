@@ -13,8 +13,8 @@ class Api extends Rest{
 
 
     public function generateToken(){
-        $logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
-        $logger->debug( $_SERVER['HTTP_USER_AGENT']. " with Ip ". $_SERVER['REMOTE_ADDR'] . " generateToken invoked" );
+        //$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
+        //$logger->debug( $_SERVER['HTTP_USER_AGENT']. " with Ip ". $_SERVER['REMOTE_ADDR'] . " generateToken invoked" );
         
         $email = $this->validateParameter('email',$this->param['email'], STRING);
         $pass = $this->validateParameter('pass',$this->param['pass'], STRING);
@@ -27,7 +27,7 @@ class Api extends Rest{
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if(!is_array($user)){
-            $logger->debug( $_SERVER['HTTP_USER_AGENT']. " with Ip ". $_SERVER['REMOTE_ADDR'] . " returned error, invalid login credentials" );
+            //$logger->debug( $_SERVER['HTTP_USER_AGENT']. " with Ip ". $_SERVER['REMOTE_ADDR'] . " returned error, invalid login credentials" );
             $this->returnResponse(INVALID_USER_PASS, "invalid login credentials");
         }
 

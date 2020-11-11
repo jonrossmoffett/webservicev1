@@ -69,8 +69,12 @@
                 try {
                     $sql = 'INSERT INTO ' . 'role_user'. '(role_id, user_id, user_type) VALUES(:role_id, :user_id, :user_type)'; 
                     $stmt = $this->dbConn->prepare($sql);
+                    if (!$stmt) {
+                        echo "\nPDO::errorInfo():\n";
+                        print_r($this->dbConn->errorInfo());
+                    }
                     $stmt->bindParam(':role_id', 3 );
-                    $stmt->bindParam(':user_id', 100 );
+                    $stmt->bindParam(':user_id', $id );
                     $stmt->bindParam(':user_type', 'App\Models\User');
                     $stmt->execute();
                 } catch (PDOException $e) {

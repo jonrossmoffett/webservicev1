@@ -74,8 +74,8 @@ class Validator {
 
     public function response($code,$message){
         http_response_code($code);
-        print_r($message);
-        $response = json_encode(['errors' => $this->ValidationErrors ]);
+        $response = print_r($message);
+        //$response = json_encode(['errors' => $this->ValidationErrors ]);
         echo $response;exit;
     }
 

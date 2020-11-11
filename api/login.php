@@ -56,8 +56,7 @@ $data = json_decode(file_get_contents("php://input"));
             $token = JWT::encode($payload,SECRETE_KEY);
     
             $data = ['token' => $token];
-            header("content-type: application/json");
-			echo $response;exit;
+			echo $data; exit;
 
         }else{
             array_push($validationErrors,"Incorrect Login Detials");

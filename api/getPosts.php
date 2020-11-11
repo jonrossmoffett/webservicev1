@@ -20,6 +20,6 @@ $isValidationError = false;
 $headers = apache_request_headers();
 
 $Auth = $headers['Authorization'];
-$Auth = ltrim($Auth,"Bearer ");
+$Auth = ltrim($Auth,"Bearer");
 
 echo $Auth;exit;

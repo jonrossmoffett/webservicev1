@@ -65,8 +65,9 @@
                 $stmt->execute();
                 $user = $stmt->fetch();
                 $id = $user['id'];
+                echo ($id = $user['id']);
 
-                $sql = 'INSERT INTO role_user (role_id, user_id, user_type) VALUES(:role_id, :user_id, :user_type)'; 
+                $sql = 'INSERT INTO role_user (role_id, user_id, user_type) VALUES( :role_id, :user_id, :user_type)'; 
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':role_id', 3 );
                 $stmt->bindParam(':user_id', $id );

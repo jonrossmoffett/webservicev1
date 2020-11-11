@@ -50,14 +50,11 @@
 
             if(empty($user)){
                 
-                $sql = 'INSERT INTO ' . $this->tableName . ' (name, email , password,) VALUES(:name, :email,:password)';
+                $sql = 'INSERT INTO ' . $this->tableName . '(name, email , password,) VALUES(:name, :email, :password)';
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':name', $this->Name);
                 $stmt->bindParam(':email', $this->Email);
                 $stmt->bindParam(':password', $this->Password);
-/*                 $stmt->bindParam(':email_verified_at', date('y-m-d'));
-                $stmt->bindParam(':created_at', date('y-m-d'));
-                $stmt->bindParam(':updated_at', date('y-m-d')); */
                 $stmt->execute();
 
                 $this->returnResponse(EMAIL_TAKEN,'User Created'); 

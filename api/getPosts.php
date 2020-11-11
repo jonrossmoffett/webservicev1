@@ -25,6 +25,6 @@ $Auth = ltrim($Auth,"Bearer");
 
 $authCheck = new AuthToken;
 
-$Auth = $authCheck->getAuthorizationHeader();
+$Auth = $authCheck->getBearerToken();
 
 echo $Auth;exit;

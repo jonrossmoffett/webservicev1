@@ -174,7 +174,7 @@ class Api extends Rest{
 
     public function register(){
         $isValidationError = false;
-        $ValidationErrors = [['errors']];
+        $ValidationErrors = ['errors']['d'];
 
         $name = $this->validateParameter('name',$this->param['name'], STRING);
         $email = $this->validateParameter('email',$this->param['email'], STRING);
@@ -191,7 +191,6 @@ class Api extends Rest{
         }
 
         if($isValidationError == true){
-            print_r($ValidationErrors);
             header("content-type: application/json");
 			$response = json_encode($ValidationErrors);
 			echo $response;exit;

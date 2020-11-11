@@ -189,13 +189,11 @@ class Api extends Rest{
             array_push($ValidationErrors,"name needs to be less than 80 characters");
         }
 
-        
-        $val =  json_encode(['error' => $ValidationErrors]);
-        echo $val;
+    
 
         if($isValidationError == true){
             header("content-type: application/json");
-			$response = json_encode(['errors' => $val]);
+			$response = json_encode(['errors' => $ValidationErrors]);
 			echo $response;exit;
         }
 

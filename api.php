@@ -30,7 +30,7 @@ class Api extends Rest{
             $payload = [
                 'iat' => time(),
                 'iss' => 'localhost',
-                'exp' => time() + (60 * 60),
+                'exp' => time() + (60 * 60 * 24),
                 'userId' => $user['id']
             ];
     

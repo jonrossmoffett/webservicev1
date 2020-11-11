@@ -10,6 +10,7 @@ class Validator {
         if($required == true && empty($value) == true){
             array_push($this->ValidationErrors,"paramaters missing ");
             $isValidationError = true;
+            $this->response(403, $this->ValidationErrors);
             //$this->response(403,"paramaters missing ");
         }
         switch($dataType){
@@ -46,7 +47,6 @@ class Validator {
         }
 
         if($isValidationError == true){
-            print_r($this->ValidationErrors);exit;
             $this->response(403, $this->ValidationErrors);
         }
 
@@ -75,8 +75,7 @@ class Validator {
 
     public function response($code,$message){
         http_response_code($code);
-        $response = print_r($message);
-        //$response = json_encode(['errors' => $this->ValidationErrors ]);
+        $response = json_encode(['errors' => $message]);
         echo $response;exit;
     }
 

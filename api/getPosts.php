@@ -24,7 +24,7 @@ $Auth = ltrim($Auth,"Bearer"); */
 
 $authCheck = new AuthTokenChecker;
 $token = $authCheck->getBearerToken();
-echo $token;
+
 $authCheck->validateToken($token);
 
 try 

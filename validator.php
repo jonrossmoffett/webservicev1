@@ -42,7 +42,7 @@ class Validator {
             break;
         }
         
-        if($password = true){
+        if($password == true){
             $this->validatePassword($value);
         }
 

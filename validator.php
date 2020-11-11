@@ -36,7 +36,7 @@ class Validator {
             break;
 
             default:
-            array_push($ValidationErrors,"data typeis not valid for " .$fieldName);
+            array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
             $isValidationError = true;
             break;
         }

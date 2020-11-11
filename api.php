@@ -174,7 +174,7 @@ class Api extends Rest{
 
     public function register(){
         $isValidationError = false;
-        $ValidationErrors = [['errors'][['d']]];
+        $ValidationErrors = [];
 
         $name = $this->validateParameter('name',$this->param['name'], STRING);
         $email = $this->validateParameter('email',$this->param['email'], STRING);
@@ -182,12 +182,11 @@ class Api extends Rest{
 
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $isValidationError = true;
-            $ValidationErrors["errors"]["Email address '$email' is considered valid.\n"];
-            //$this->returnResponse(INVALID_EMAIL,"Email address '$email' is considered valid.\n");
+            array_push($ValidationErrors,"Email address '$email' is considered valid.\n");
         } 
         if (strlen($name) > 50) {
             $isValidationError = true;
-            $ValidationErrors["errors"]["name needs to be less than 50 characters"];
+            array_push($ValidationErrors,"name needs to be less than 80 characters");
         }
 
         if($isValidationError == true){

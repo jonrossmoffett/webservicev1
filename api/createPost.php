@@ -50,6 +50,10 @@ try
     {
         $message = $e->getMessage();
     }
+
+    $response = json_encode('response', $message);
+    echo $response;exit;
+
 }
 catch(Exception $e)
 {

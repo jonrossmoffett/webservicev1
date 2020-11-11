@@ -68,12 +68,12 @@
                 
 
                 $sql = 'INSERT INTO ' . 'role_user'. '(role_id, user_id , user_type) VALUES(:role_id, :user_id, :user_type)'; 
-                $stmt = $this->dbConn->prepare($sql);
+/*                 $stmt = $this->dbConn->prepare($sql);
                 print_r($this->pdo->errorInfo());
-/*                 $stmt->bindParam(':role_id', 3 );
+                $stmt->bindParam(':role_id', 3 );
                 $stmt->bindParam(':user_id', $id );
                 $stmt->bindParam(':user_type', 'App\Models\User');
-                $stmt->execute(); */
+                $stmt->execute();  */
 
                 //http_response_code(404);
                 $this->returnResponse(EMAIL_TAKEN,'User Created'); 
@@ -81,23 +81,6 @@
                 $this->returnResponse(EMAIL_TAKEN,'Email is taken'); 
             }
 
-
-/* 
-			$sql = 'INSERT INTO ' . $this->tableName . '(title, description, user_id, status , created_at, updated_at) VALUES(:title, :description, :user_id , :status, :created_at, :updated_at)';
-
-			$stmt = $this->dbConn->prepare($sql);
-			$stmt->bindParam(':title', $this->Title);
-			$stmt->bindParam(':description', $this->Description);
-            $stmt->bindParam(':status', $this->Status);
-            $stmt->bindParam(':user_id', $this->createdBy);
-			$stmt->bindParam(':created_at', $this->createdAt);
-			$stmt->bindParam(':updated_at', $this->updatedAt);
-			
-			if($stmt->execute()) {
-				return true;
-			} else {
-				return false;
-            } */
             
 		}
 

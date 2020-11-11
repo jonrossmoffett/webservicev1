@@ -1,13 +1,18 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 
-class login extends Rest{
-
-    public function generateToken(){
-        $logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
-        $logger->debug( $_SERVER['HTTP_USER_AGENT']. " with Ip ". $_SERVER['REMOTE_ADDR'] . " generateToken invoked" );
+$data = json_decode(file_get_contents("php://input"));
         
-        $email = $this->validateParameter('email',$this->param['email'], STRING);
-        $pass = $this->validateParameter('pass',$this->param['pass'], STRING);
+
+        //$email = $this->validateParameter('email',$this->param['email'], STRING);
+        //$pass = $this->validateParameter('pass',$this->param['pass'], STRING);
+
+        $email = $data->email;
+        $pass = $data->password;
+
 
         try{
         $stmt = $this->dbConn->prepare("SELECT * FROM users WHERE email = :email");
@@ -43,9 +48,9 @@ class login extends Rest{
             $this->throwError(JWT_PROCESSING_ERROR, $e->getmessage());
         }
 
-    }
+    
 
-}
+
 
 
 

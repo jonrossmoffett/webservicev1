@@ -24,7 +24,7 @@ $Auth = ltrim($Auth,"Bearer"); */
 $postId = $data->postId;
 
 $validator = new Validator;
-$validator->validateParameter('PostId',$postId,INTEGER,TRUE,FALSE,FALSE);
+$validator->validateParameter('PostId',$postId,INTEGER,0,0,TRUE,FALSE,FALSE);
 
 
 $authCheck = new AuthTokenChecker;

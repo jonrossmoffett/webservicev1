@@ -17,4 +17,4 @@ $validationErrors = [];
 $isValidationError = false;
 
 $auth = $data->Authorization;
-echo $auth;
+echo $auth;exit;

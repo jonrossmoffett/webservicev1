@@ -202,7 +202,7 @@ class Api extends Rest{
         }
 
         if( !preg_match("#[0-9]+#", $password ) ) {
-            array_push($ValidationErrors,'"Password must include at least one number!');
+            array_push($ValidationErrors,"Password must include at least one number!");
         }
 
         if( !preg_match("#[a-z]+#", $password ) ) {

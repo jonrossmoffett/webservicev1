@@ -191,6 +191,7 @@ class Api extends Rest{
         }
 
         if($isValidationError == true){
+            print_r($ValidationErrors);
             header("content-type: application/json");
 			$response = json_encode($ValidationErrors);
 			echo $response;exit;

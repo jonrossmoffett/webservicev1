@@ -24,9 +24,9 @@ $data = json_decode(file_get_contents("php://input"));
             $isValidationError = true;
         }
 
-        if($isValidationError){
+        if($isValidationError == true){
             header("content-type: application/json");
-            $response = json_encode(['errors' => $ValidationErrors ]);
+            $response = json_encode(['errors' => $validationErrors ]);
 			echo $response;exit;
         }
 

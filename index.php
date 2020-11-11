@@ -1,13 +1,13 @@
   
 <?php 
-/* 	if($_SERVER['HTTP_HOST'] !== 'localhost'){
+/*  	if($_SERVER['HTTP_HOST'] !== 'localhost'){
 		exit;
-	}  */
+	}   */
 	require './vendor/autoload.php';
 	require_once('functions.php');
 
-	//$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
-	//$logger->info( $_SERVER['HTTP_USER_AGENT']. " Reached index with ip ". $_SERVER['REMOTE_ADDR']);
+	$logger = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
+	$logger->info( $_SERVER['HTTP_USER_AGENT']. " Reached index with ip ". $_SERVER['REMOTE_ADDR']);
 	date_default_timezone_set('Australia/Brisbane');
 	session_start();
 	include("rate.php");

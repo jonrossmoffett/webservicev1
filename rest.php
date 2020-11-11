@@ -12,9 +12,9 @@
 		
 		public function __construct() {
 
-			if($_SERVER['REQUEST_METHOD'] !== 'POST'){
-				$this->throwError(REQUEST_METHOD_NOT_VALID,'Request method is not valid');
-			}
+			//if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+			//	$this->throwError(REQUEST_METHOD_NOT_VALID,'Request method is not valid');
+			//}
 
 			//read data and get contents from request
 			$file = fopen('php://input','r');

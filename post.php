@@ -44,25 +44,6 @@
 			return $posts;
 		}
 
-		public function getPostDetailsById() {
-
-			$sql = "SELECT 
-						p.*, 
-						u.name as created_user,
-						u1.name as updated_user
-					FROM posts p
-						JOIN users u ON (p.user_id = u.id) 
-						LEFT JOIN users u1 ON (p.updated_at = u1.id) 
-					WHERE 
-						p.user_id = :customerId";
-
-			$stmt = $this->dbConn->prepare($sql);
-			$stmt->bindParam(':customerId', $this->id);
-			$stmt->execute();
-			$customer = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $customer;
-		}
-		
 
 		public function insert() {
 			
@@ -121,14 +102,33 @@
 		}
 
 		public function delete() {
-			$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :userId');
-			$stmt->bindParam(':userId', $this->id);
-			
-			if($stmt->execute()) {
-				return true;
-			} else {
-				return false;
+
+			$owner = "SELECT * from " . $this->tableName . " WHERE id = :id";
+            $stmt1 = $this->dbConn->prepare($owner);
+            $stmt1->bindParam(':id', $this->id);
+            $stmt1->execute();
+            $post = $stmt1->fetch(PDO::FETCH_OBJ);
+			$owner = $post;
+
+			if(empty($owner)){
+				$this->returnResponse(NOT_OWN_POST,"you do not have access to this post");
+			}else{
+				if($owner = $post->user_id !== $this->createdBy){
+					$this->returnResponse(NOT_OWN_POST,"you do not have access to this post");
+				}else{
+					
+					$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :postId');
+					$stmt->bindParam(':postId', $this->id);
+					
+					if($stmt->execute()) {
+						return true;
+					} else {
+						return false;
+					}
+				}
 			}
+
+
         }
 
         public function returnResponse($code, $data) {

@@ -24,24 +24,8 @@ $data = json_decode(file_get_contents("php://input"));
         $password = $data->password;
 
         $validator = new Validator;
-        $validator->validateParameter('Email',$email,EMAIL,50,5,TRUE);
-        $validator->validateParameter('Description',$password,PASSWORD,20,8,TRUE);
-
-
-        if(empty($email)){
-            array_push($validationErrors,"Please provide an email");
-            $isValidationError = true;
-        }
-        if(empty($password)){
-            array_push($validationErrors,"Please provide a password");
-            $isValidationError = true;
-        }
-
-        if($isValidationError == true){
-            header("content-type: application/json");
-            $response = json_encode(['errors' => $validationErrors ]);
-			echo $response;exit;
-        }
+        $validator->validateParameter('Email',$email, EMAIL ,50,5,TRUE);
+        $validator->validateParameter('Description',$password, PASSWORD ,20,8,TRUE);
 
 
         $sql = 'SELECT * FROM users WHERE email = :email';

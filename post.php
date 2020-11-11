@@ -103,6 +103,8 @@
 
 		public function delete() {
 
+			
+
 			$owner = "SELECT * from " . $this->tableName . " WHERE id = :id";
             $stmt1 = $this->dbConn->prepare($owner);
             $stmt1->bindParam(':id', $this->id);
@@ -110,23 +112,33 @@
             $post = $stmt1->fetch(PDO::FETCH_OBJ);
 			$owner = $post;
 
+			echo 'user id wanting to delete post: ' . $post->user_id . ' post Id: ' . $this->createdBy;exit;
+
 			if(empty($owner)){
 				$this->returnResponse(NOT_OWN_POST,"you do not have access to this post");
-			}else{
-				if($owner = $post->user_id !== $this->createdBy){
+			}
+			else
+			{
+
+			if($owner = $post->user_id !== $this->createdBy){
 					$this->returnResponse(NOT_OWN_POST,"you do not have access to this post");
-				}else{
+			}
+			else
+			{
 					
-					$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :postId');
-					$stmt->bindParam(':postId', $this->id);
+				$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :postId');
+				$stmt->bindParam(':postId', $this->id);
 					
-					if($stmt->execute()) {
-						return true;
-					} else {
-						return false;
-					}
+				if($stmt->execute()) {
+					return true;
+				} 
+				else
+				{
+					return false;
 				}
 			}
+
+		}
 
 
         }

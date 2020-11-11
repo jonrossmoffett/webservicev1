@@ -8,7 +8,9 @@
         private $CreatedAt;
 		private $UpdatedAt;
 		private $tableName = 'users';
-		private $dbConn;
+        private $dbConn;
+        private $defaultRole = 'App\Models\User';
+        private $defaultRoleId = 3;
 
 		function setId($id) { $this->id = $id; }
         function getId() { return $this->id; }
@@ -64,14 +66,14 @@
                 $stmt->bindParam(':email', $this->Email);
                 $stmt->execute();
                 $user = $stmt->fetch();
-                $id = $user['id'];
+                $this->id = $user['id'];
                 
 
                 $sql = 'INSERT INTO ' . 'role_user'. '(role_id, user_id , user_type) VALUES(:role_id, :user_id, :user_type)'; 
                 $stmt = $this->dbConn->prepare($sql);
-                $stmt->bindParam(':role_id', 3 );
-                $stmt->bindParam(':user_id', 50 );
-                $stmt->bindParam(':user_type', 'App\Models\User');
+                $stmt->bindParam(':role_id', $this->defaultRoleId );
+                $stmt->bindParam(':user_id', $this->id );
+                $stmt->bindParam(':user_type', $this->defaultRole);
                 $stmt->execute();  
 
                 //http_response_code(404);

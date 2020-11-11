@@ -4,7 +4,7 @@ class Validator {
 
     public function validateParameter($fieldName, $value, $dataType, $required = true) {
         if($required == true && empty($value) == true){
-            $this->response(403,"paramater is required");
+            $this->response(403,"paramater is required " .$fieldName);
         }
         switch($dataType){
             case BOOLEAN:

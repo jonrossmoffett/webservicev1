@@ -29,10 +29,8 @@ $uid = $authCheck->validateToken($token);
 
 try 
 {
-   
     $post = new Post;
     $post->setCreatedBy($uid);
-
    try
    {
        $data = $post->getAllPosts();
@@ -42,9 +40,7 @@ try
    {
        $message = $e->getMessage();
    }
-
-    echo $message;exit;
-
+    echo json_decode([$message]);exit;
 }
 catch(Exception $e)
 {

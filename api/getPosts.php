@@ -19,8 +19,7 @@ $isValidationError = false;
 
 $headers = apache_request_headers();
 
-foreach ($headers as $header => $value) {
-    echo "$header: $value <br />\n";
-}
+$Auth = $headers['Authorization'];
+$Auth = ltrim($Auth,"Bearer ");
 
-echo $headers['Authorization'];
+echo $Auth;exit;

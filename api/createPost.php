@@ -51,7 +51,7 @@ try
         $message = $e->getMessage();
     }
 
-    $response = json_encode('response', $message);
+    $response = json_encode(['response' => $message]);
     echo $response;exit;
 
 }

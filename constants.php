@@ -20,6 +20,7 @@
 	define('API_DOST_NOT_EXIST', 					107);
 	define('INVALID_USER_PASS', 					108);
 	define('USER_NOT_ACTIVE', 						109);
+	define('VALIDATION_ERROR', 					    110);
 
 	define('SUCCESS_RESPONSE', 						200);
 

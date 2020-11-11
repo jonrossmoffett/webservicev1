@@ -47,7 +47,7 @@
 
 		public function insert() {
 			
-			$sql = 'INSERT INTO ' . $this->tableName . '("Title", "Description", user_id, "Status", created_at, updated_at) VALUES(:title, :description, :user_id , :status, :created_at, :updated_at)';
+			$sql = 'INSERT INTO ' . $this->tableName . '(title, description, user_id, status , created_at, updated_at) VALUES(:title, :description, :user_id , :status, :created_at, :updated_at)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':title', $this->Title);
@@ -80,11 +80,11 @@
 			
 			$sql = "UPDATE $this->tableName SET";
 			if( null != $this->getTitle()) {
-				$sql .=	" 'Title' = '" . $this->getTitle() . "',";
+				$sql .=	" 'title' = '" . $this->getTitle() . "',";
 			}
 
 			if( null != $this->getDescription()) {
-				$sql .=	" 'Description' = '" . $this->getDescription() . "',";
+				$sql .=	" 'description' = '" . $this->getDescription() . "',";
 			}
 
 			$sql .=	"updated_at = :updatedAt

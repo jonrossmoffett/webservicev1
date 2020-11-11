@@ -1,4 +1,5 @@
 <?php
+include_once('constants.php');
 
 class Validator {
 
@@ -33,18 +34,18 @@ class Validator {
                 }
             break;
             case PASSWORD:
+                    $this->validatePassword($value);
                     if(!is_string($value)){
                         array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
                         $isValidationError = true;
                     }
-                    $this->validatePassword($value);
             break;
             case EMAIL:
+                $this->validateEmail($value);
                 if(!is_string($value)){
                     array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
                     $isValidationError = true;
                 }
-                $this->validateEmail($value);
             break;
 
             default:

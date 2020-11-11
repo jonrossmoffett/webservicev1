@@ -25,7 +25,7 @@ $data = json_decode(file_get_contents("php://input"));
 
         $validator = new Validator;
         $validator->validateParameter('Email',$email, EMAIL ,50,5,TRUE);
-        $validator->validateParameter('Password',$password, PASSWORD ,20,8,TRUE);
+        $validator->validateParameter('Password',$password,PASSWORD,20,8,TRUE);
 
 
         $sql = 'SELECT * FROM users WHERE email = :email';

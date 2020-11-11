@@ -5,7 +5,7 @@ class Validator {
     public $ValidationErrors = [];
     public $isValidationError = false;
 
-    public function validateParameter($fieldName, $value, $dataType, $max, $min, $required = true, $password = false, $email = false) {
+    public function validateParameter($fieldName, $value, $dataType, $max = 0, $min = 0, $required = true, $password = false, $email = false) {
 
         if($required == true && empty($value) == true){
             array_push($this->ValidationErrors,"paramaters missing ");
@@ -42,15 +42,19 @@ class Validator {
             break;
         }
 
-        if(strlen($value) > $max){
-            array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $max);
-            $isValidationError = true;
+        if ($min !== 0 && $max !== 0){
+            if(strlen($value) > $max){
+                array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $max);
+                $isValidationError = true;
+            }
+    
+            if(strlen($value) < $min){
+                array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
+                $isValidationError = true;
+            }
         }
 
-        if(strlen($value) < $min){
-            array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
-            $isValidationError = true;
-        }
+
         
         if($password == true){
             $this->validatePassword($value);
@@ -67,17 +71,17 @@ class Validator {
     public function validatePassword($password){
 
         if (strlen($password) > 50) {
-            $isValidationError = true;
+            $this->isValidationError = true;
             array_push($this->ValidationErrors,"name needs to be less than 80 characters");
         }
 
         if( strlen($password ) > 20 ) {
-            $isValidationError = true;
+            $this->isValidationError = true;
             array_push($this->ValidationErrors,"Password too long, needs to be less than 20 characters");
         }
 
         if( strlen($password ) < 8 ) {
-            $isValidationError = true;
+            $this->isValidationError = true;
             array_push($this->ValidationErrors,"Password too short, need to be more than 5 characters");
         }
 

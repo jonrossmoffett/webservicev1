@@ -2,7 +2,7 @@
 
 class Validator {
 
-    public $ValidationErrors;
+    public $ValidationErrors = [];
     public $isValidationError = false;
 
     public function validateParameter($fieldName, $value, $dataType, $required = true, $password = false) {

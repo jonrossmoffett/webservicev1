@@ -47,15 +47,24 @@
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_OBJ);
 
-            echo "reached 2";
 
             if(empty($user)){
-                $this->returnResponse(EMAIL_TAKEN,'Email is free'); 
+                
+                $sql = 'INSERT INTO ' . $this->tableName . '(name, email , email_verified_at, password, created_at, updated_at) VALUES(:name, :email, :email_verified_at, :password, :created_at, :updated_at)';
+                $stmt = $this->dbConn->prepare($sql);
+                $stmt->bindParam(':name', $this->Name);
+                $stmt->bindParam(':email', $this->Email);
+                $stmt->bindParam(':password', $this->Password);
+                $stmt->bindParam(':email_verified_at', date('y-m-d'));
+                $stmt->bindParam(':created_at', date('y-m-d'));
+                $stmt->bindParam(':updated_at', date('y-m-d'));
+                $result = $stmt->execute();
+
+                $this->returnResponse(EMAIL_TAKEN,'User Created ' . $result); 
             }else{
                 $this->returnResponse(EMAIL_TAKEN,'Email is taken'); 
             }
 
-            echo "reached 3";
 
 /* 
 			$sql = 'INSERT INTO ' . $this->tableName . '(title, description, user_id, status , created_at, updated_at) VALUES(:title, :description, :user_id , :status, :created_at, :updated_at)';

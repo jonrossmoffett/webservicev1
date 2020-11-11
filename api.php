@@ -174,6 +174,8 @@ class Api extends Rest{
 
         $user = new User;
         $user->setEmail($email);
+        $user->setPassword($password);
+        $user->setName($name);
         $user->insert();
 
     }

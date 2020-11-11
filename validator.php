@@ -44,43 +44,43 @@ class Validator {
                 $this->validateEmail($value);
                 if(!is_string($value)){
                     array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
-                    $isValidationError = true;
+                    $this->isValidationError = true;
                 }
             break;
 
             default:
             array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
-            $isValidationError = true;
+            $this->isValidationError = true;
             break;
         }
 
         if ($min !== 0 && $max !== 0){
             if(strlen($value) > $max){
                 array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $max);
-                $isValidationError = true;
+                $this->isValidationError = true;
             }
     
             if(strlen($value) < $min){
                 array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
-                $isValidationError = true;
+                $this->isValidationError = true;
             }
         }
 
-/*         if ($min > 0 && $max == 0){
+        if ($min > 0 && $max == 0){
             if(strlen($value) < $min){
                 array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
-                $isValidationError = true;
+                $this->isValidationError = true;
             }
         }
 
         if ($min == 0 && $max > 0){
             if(strlen($value) < $min){
                 array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $min);
-                $isValidationError = true;
+                $this->isValidationError = true;
             }
-        } */
+        }
     
-        if($isValidationError == true){
+        if($this->isValidationError == true){
             $this->response(403, $this->ValidationErrors);
         }
 

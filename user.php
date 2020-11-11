@@ -39,7 +39,8 @@
 
 		public function insert() {
 
-            
+            $hashedPassword = password_hash($this->getPassword(), PASSWORD_DEFAULT);
+            $this->setPassword($hashedPassword);
 
             $sql = 'SELECT * FROM ' . $this->tableName . ' WHERE email = :email';
             $stmt = $this->dbConn->prepare($sql);

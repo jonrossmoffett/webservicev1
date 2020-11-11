@@ -176,6 +176,7 @@ class Api extends Rest{
         $user->setEmail($email);
         $user->setPassword($password);
         $user->setName($name);
+        $user->setCreatedAt(date('Y-m-d'));
         $user->insert();
 
     }

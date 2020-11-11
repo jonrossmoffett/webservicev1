@@ -55,7 +55,7 @@
                 $stmt->bindParam(':name', $this->Name);
                 $stmt->bindParam(':email', $this->Email);
                 $stmt->bindParam(':password', $this->Password);
-                $stmt->bindParam(':created_at',date('y-m-d'));
+                $stmt->bindParam(':created_at',$this->CreatedAt);
                 $stmt->execute();
 
                 http_response_code(404);

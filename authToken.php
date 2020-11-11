@@ -14,11 +14,9 @@ class AuthTokenChecker{
         
     }
 
-    public function validateToken() {
+    public function validateToken($token) {
         try {
-            $token = $this->getBearerToken();
             $payload = JWT::decode($token, SECRETE_KEY, ['HS256']);
-
             $stmt = $this->dbConn->prepare("SELECT * FROM users WHERE id = :userId");
             $stmt->bindParam(":userId", $payload->userId);
             $stmt->execute();

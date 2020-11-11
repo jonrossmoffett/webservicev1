@@ -65,8 +65,9 @@
                 $stmt->execute();
                 $user = $stmt->fetch();
                 $id = $user['id'];
+                
+                $stmt->reset();
 
-                try {
                     $sql = 'INSERT INTO ' . 'role_user'. '(role_id, user_id, user_type) VALUES(:role_id, :user_id, :user_type)'; 
                     $stmt = $this->dbConn->prepare($sql);
                     if (!$stmt) {
@@ -77,9 +78,7 @@
                     $stmt->bindParam(':user_id', $id );
                     $stmt->bindParam(':user_type', 'App\Models\User');
                     $stmt->execute();
-                } catch (PDOException $e) {
-                    echo 'Connection failed: ' . $e->getMessage();
-                }
+
 
 
                 //http_response_code(404);

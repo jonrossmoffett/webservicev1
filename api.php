@@ -188,12 +188,29 @@ class Api extends Rest{
             $isValidationError = true;
             array_push($ValidationErrors,"name needs to be less than 80 characters");
         }
+        if (strlen($password) > 50) {
+            $isValidationError = true;
+            array_push($ValidationErrors,"name needs to be less than 80 characters");
+        }
 
-    
+        if( strlen($password ) > 20 ) {
+            array_push($ValidationErrors,"Password too long!")  ;
+        }
+
+        if( strlen($password ) < 8 ) {
+            array_push($ValidationErrors,"Password too short!");
+        }
+
+        if( !preg_match("#[0-9]+#", $password ) ) {
+            array_push($ValidationErrors,'"Password must include at least one number!');
+        }
+
+        if( !preg_match("#[a-z]+#", $password ) ) {
+            array_push($ValidationErrors, "Password must include at least one letter!");
+        }
 
         if($isValidationError == true){
             header("content-type: application/json");
-            //$response = json_encode(['errors' => [['error' => $ValidationErrors[0]],['error' => $ValidationErrors[1]]] ]);
             $response = json_encode(['errors' => $ValidationErrors ]);
 			echo $response;exit;
         }

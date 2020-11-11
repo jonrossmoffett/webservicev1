@@ -1,10 +1,18 @@
 <?php
 include_once('database.php');
+include_once('constants.php');
 
-$db = new database;
-$dbConn = $db->connect();
 
 class AuthTokenChecker{
+
+    public $dbConn;
+    
+    public function __construct()
+    {
+        $db = new database;
+        $this->dbConn = $db->connect();
+        
+    }
 
     public function validateToken() {
         try {

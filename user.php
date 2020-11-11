@@ -34,10 +34,12 @@
 		public function __construct() {
 			$db = new database;
             $this->dbConn = $db->connect();
-            echo "reached construct";
+           
 		}
 
 		public function insert() {
+
+            echo " insert called ";
 
             $sql = 'SELECT * FROM ' .$this->tableName . 'WHERE email = :email';
             $stmt = $this->dbConn->prepare($sql);

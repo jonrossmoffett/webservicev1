@@ -182,7 +182,7 @@ class Api extends Rest{
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $isValidationError = true;
-            array_push($ValidationErrors,"Email address '$email' is an invalid email.\n");
+            array_push($ValidationErrors,"Email address '$email' is an invalid email.");
         } 
         if (strlen($name) > 50) {
             $isValidationError = true;

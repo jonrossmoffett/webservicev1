@@ -25,11 +25,12 @@ $Auth = ltrim($Auth,"Bearer"); */
 
 $title = $data->title;
 $description = $data->description;
+$postId = $data->postId;
 
 $validator = new Validator;
 $validator->validateParameter('Title',$title,STRING,'200','5');
 $validator->validateParameter('Description',$description,STRING,'200','5');
-
+$validator->validateParameter('PostId',$postId,INTEGER);
 
 $authCheck = new AuthTokenChecker;
 $token = $authCheck->getBearerToken();

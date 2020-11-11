@@ -2,6 +2,7 @@
 include_once('../database.php');
 include_once('../jwt.php');
 include_once('../constants.php');
+include_once('../validator.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -21,6 +22,11 @@ $data = json_decode(file_get_contents("php://input"));
 
         $email = $data->email;
         $password = $data->password;
+
+        $validator = new Validator;
+        $validator->validateParameter('Email',$email,EMAIL,50,5,TRUE);
+        $validator->validateParameter('Description',$password,PASSWORD,20,8,TRUE);
+
 
         if(empty($email)){
             array_push($validationErrors,"Please provide an email");

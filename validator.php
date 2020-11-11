@@ -5,7 +5,7 @@ class Validator {
     public $ValidationErrors = [];
     public $isValidationError = false;
 
-    public function validateParameter($fieldName, $value, $dataType, $max = 0, $min = 0, $required = true, $password = false, $email = false) {
+    public function validateParameter($fieldName, $value, $dataType, $max = 0, $min = 0, $required = true) {
 
         if($required == true && empty($value) == true){
             array_push($this->ValidationErrors,"paramaters missing ");
@@ -16,24 +16,35 @@ class Validator {
         switch($dataType){
             case BOOLEAN:
                 if(!is_bool($value)){
-                    //$this->response(403, "data type is not valid for " .$fieldName);
                     array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
                     $isValidationError = true;
             }
             break;
             case INTEGER:
                 if(!is_numeric($value)){
-                    //$this->response(403,"data type is not valid for " . $fieldName);
-                    array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
+                    array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
                     $isValidationError = true;
                 }
             break;
             case STRING:
                 if(!is_string($value)){
-                    //$this->response(403, "data type is not valid for" . $fieldName);
                     array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
                     $isValidationError = true;
                 }
+            break;
+            case PASSWORD:
+                    if(!is_string($value)){
+                        array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
+                        $isValidationError = true;
+                    }
+                    $this->validatePassword($value);
+            break;
+            case EMAIL:
+                if(!is_string($value)){
+                    array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
+                    $isValidationError = true;
+                }
+                $this->validateEmail($value);
             break;
 
             default:
@@ -67,13 +78,7 @@ class Validator {
                 $isValidationError = true;
             }
         }
-
-
-        
-        if($password == true){
-            $this->validatePassword($value);
-        }
-
+    
         if($isValidationError == true){
             $this->response(403, $this->ValidationErrors);
         }
@@ -84,21 +89,23 @@ class Validator {
 
     public function validatePassword($password){
 
-        if (strlen($password) > 50) {
+        if( !preg_match("#[0-9]+#", $password ) ) {
             $this->isValidationError = true;
-            array_push($this->ValidationErrors,"name needs to be less than 80 characters");
+            array_push($this->ValidationErrors,"Password must include at least one number!");
         }
 
-        if( strlen($password ) > 20 ) {
+        if( !preg_match("#[a-z]+#", $password ) ) {
             $this->isValidationError = true;
-            array_push($this->ValidationErrors,"Password too long, needs to be less than 20 characters");
+            array_push($this->ValidationErrors, "Password must include at least one letter!");
         }
 
-        if( strlen($password ) < 8 ) {
-            $this->isValidationError = true;
-            array_push($this->ValidationErrors,"Password too short, need to be more than 5 characters");
-        }
+    }
 
+    public function validateEmail($email){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            array_push($this->ValidationErrors,"Email is invalid ");
+            $this->isValidationError = true;
+         }
     }
 
     public function response($code,$message){

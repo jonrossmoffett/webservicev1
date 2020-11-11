@@ -38,7 +38,8 @@ $data = json_decode(file_get_contents("php://input"));
         }
 
 
-        $dbConn->prepare("SELECT * FROM users WHERE email = :email");
+        $sql = 'SELECT * FROM users WHERE email = :email';
+        $stmt = $dbConn->prepare($sql);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
         $user = $stmt->fetch();

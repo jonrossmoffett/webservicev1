@@ -45,7 +45,8 @@ class Validator {
             $this->validatePassword($value);
         }
 
-        if($isValidationError){
+        if($isValidationError == true){
+            print_r($this->$ValidationErrors);exit;
             $this->response(403, $this->$ValidationErrors);
         }
 

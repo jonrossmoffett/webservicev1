@@ -47,7 +47,7 @@
 
 		public function insert() {
 			
-			$sql = 'INSERT INTO ' . $this->tableName . '(id, Title, Description, user_id, Status, created_at, updated_at) VALUES(null, :title, :description, :user_id , :status, :created_at, :updated_at)';
+			$sql = 'INSERT INTO ' . $this->tableName . '(id, "Title", "Description", user_id, "Status", created_at, updated_at) VALUES(null, :title, :description, :user_id , :status, :created_at, :updated_at)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':title', $this->Title);

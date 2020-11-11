@@ -112,21 +112,27 @@
 
 			if(empty($owner)){
 				echo "no such post exists";exit;
+			}else{
+
+				if($post->user_id == $this->createdBy){
+
+					$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :postId');
+					$stmt->bindParam(':postId', $this->id);
+						
+					if($stmt->execute()) {
+						return true;
+					} 
+					else
+					{
+						return false;
+					}
+				}else{
+					echo "you do not own the post";exit;
+				}
+
 			}
 			
-			if($post->user_id == $this->createdBy){
 
-				$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :postId');
-				$stmt->bindParam(':postId', $this->id);
-					
-				if($stmt->execute()) {
-					return true;
-				} 
-				else
-				{
-					return false;
-				}
-			}
 	
         }
 

@@ -174,7 +174,7 @@ class Api extends Rest{
 
     public function register(){
         $isValidationError = false;
-        $ValidationErrors = [];
+        $ValidationErrors = [['errors']];
 
         $name = $this->validateParameter('name',$this->param['name'], STRING);
         $email = $this->validateParameter('email',$this->param['email'], STRING);

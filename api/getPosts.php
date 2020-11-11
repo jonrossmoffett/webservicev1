@@ -16,5 +16,5 @@ $data = json_decode(file_get_contents("php://input"));
 $validationErrors = [];
 $isValidationError = false;
 
-$auth = $data->Authorization;
-echo $auth;exit;
+
+echo $data;exit;

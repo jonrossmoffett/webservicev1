@@ -109,6 +109,12 @@
 			echo $response;exit;
 		}
 
+		public function returnResponse2($code, $data) {
+			header("content-type: application/json");
+			$response = json_encode(['response' =>['status'=>$code, $data]]);
+			echo $response;exit;
+		}
+
 		/**
 	    * Get hearder Authorization
 	    * */

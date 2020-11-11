@@ -191,7 +191,7 @@ class Api extends Rest{
         }
 
         if($isValidationError == true){
-            $this->returnResponse(VALIDATION_ERROR,$ValidationErrors);
+            $this->returnResponse2(VALIDATION_ERROR,$ValidationErrors);
         }
 
         $user = new User;

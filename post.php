@@ -80,11 +80,11 @@
 			
 			$sql = "UPDATE $this->tableName SET";
 			if( null != $this->getTitle()) {
-				$sql .=	" 'title' = '" . $this->getTitle() . "',";
+				$sql .=	" title = '" . $this->getTitle() . "',";
 			}
 
 			if( null != $this->getDescription()) {
-				$sql .=	" 'description' = '" . $this->getDescription() . "',";
+				$sql .=	" description = '" . $this->getDescription() . "',";
 			}
 
 			$sql .=	"updated_at = :updatedAt

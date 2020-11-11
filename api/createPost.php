@@ -23,12 +23,12 @@ $Auth = $headers['Authorization'];
 $Auth = ltrim($Auth,"Bearer"); */
 $validator = new Validator;
 
-
 $title = $data->title;
 $description = $data->description;
 
 $validator->validateParameter('Title',$title,STRING,TRUE);
 $validator->validateParameter('Description',$description,STRING,TRUE);
+
 
 $authCheck = new AuthTokenChecker;
 $token = $authCheck->getBearerToken();

@@ -39,9 +39,9 @@
 
 		public function insert() {
 
-            echo " insert called ";
+            
 
-            $sql = 'SELECT * FROM ' .$this->tableName . 'WHERE email = :email';
+            $sql = 'SELECT * FROM ' . $this->tableName . ' WHERE email = :email';
             $stmt = $this->dbConn->prepare($sql);
             $stmt->bindParam(':email', $this->Email);
             $stmt->execute();

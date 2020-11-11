@@ -26,8 +26,8 @@ $validator = new Validator;
 $title = $data->title;
 $description = $data->description;
 
-$validator->validateParameter('Title',$title,STRING,TRUE,false);
-$validator->validateParameter('Description',$description,STRING,TRUE,false);
+$validator->validateParameter('Title',$title,STRING,'200','5',TRUE,FALSE,FALSE);
+$validator->validateParameter('Description',$description,STRING,'200','5',TRUE,FALSE,FALSE);
 
 
 $authCheck = new AuthTokenChecker;

@@ -5,7 +5,7 @@ class Validator {
     public $ValidationErrors = [];
     public $isValidationError = false;
 
-    public function validateParameter($fieldName, $value, $dataType, $required = true, $password = false) {
+    public function validateParameter($fieldName, $value, $dataType, $max, $min, $required = true, $password = false, $email = false) {
 
         if($required == true && empty($value) == true){
             array_push($this->ValidationErrors,"paramaters missing ");
@@ -40,6 +40,16 @@ class Validator {
             array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
             $isValidationError = true;
             break;
+        }
+
+        if(strlen($value) > $max){
+            array_push($this->ValidationErrors,"Max length for field " .$fieldName . "is " . $max);
+            $isValidationError = true;
+        }
+
+        if(strlen($value) < $min){
+            array_push($this->ValidationErrors,"Min length for field " .$fieldName . "is " . $min);
+            $isValidationError = true;
         }
         
         if($password == true){

@@ -67,13 +67,13 @@
                 $id = $user['id'];
                 
 
-                $sql2 = 'INSERT INTO ' . 'role_user'. '(role_id, user_id , user_type) VALUES(:role_id, :user_id, :user_type)'; 
-                $stmt2 = $this->dbConn->prepare($sql2);
-                print_r($this->pdo->errorInfo());
-                $stmt2->bindParam(':role_id', 3 );
-                $stmt2->bindParam(':user_id', $id );
-                $stmt2->bindParam(':user_type', 'App\Models\User');
-                $stmt2->execute();  
+                $sql = 'INSERT INTO  role_user (role_id, user_id , user_type) VALUES(3, 100, adsda)'; 
+                $stmt = $this->dbConn->prepare($sql);
+/*                 print_r($this->pdo->errorInfo());
+                $stmt->bindParam(':role_id', 3 );
+                $stmt->bindParam(':user_id', $id );
+                $stmt->bindParam(':user_type', 'App\Models\User'); */
+                $stmt->execute();  
 
                 //http_response_code(404);
                 $this->returnResponse(EMAIL_TAKEN,'User Created'); 

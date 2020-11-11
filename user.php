@@ -66,15 +66,10 @@
                 $user = $stmt->fetch();
                 $id = $user['id'];
 
-                if(is_int($id)){
-                    echo ($id = $user['id']);
-                }
-               
-
                 $sql = 'INSERT INTO role_user (role_id, user_id, user_type) VALUES( :role_id, :user_id, :user_type)'; 
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':role_id', 3 );
-                $stmt->bindParam(':user_id', $id );
+                $stmt->bindParam(':user_id', 100 );
                 $stmt->bindParam(':user_type', 'App\Models\User');
                 $stmt->execute();
 

@@ -17,4 +17,8 @@ $validationErrors = [];
 $isValidationError = false;
 
 
-echo $_SERVER['PHP_AUTH_PW'];
+$headers = apache_request_headers();
+
+foreach ($headers as $header => $value) {
+    echo "$header: $value <br />\n";
+}

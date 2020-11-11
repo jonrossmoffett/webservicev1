@@ -33,7 +33,8 @@
 
 		public function __construct() {
 			$db = new database;
-			$this->dbConn = $db->connect();
+            $this->dbConn = $db->connect();
+            echo "reached construct";
 		}
 
 		public function insert() {

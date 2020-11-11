@@ -13,7 +13,7 @@ $data = json_decode(file_get_contents("php://input"));
         //$pass = $this->validateParameter('pass',$this->param['pass'], STRING);
 
         $email = $data->email;
-        $pass = $data->password;
+        $password = $data->password;
 
         if(empty($email)){
             array_push($validationErrors,"Please provide an email");
@@ -36,7 +36,7 @@ $data = json_decode(file_get_contents("php://input"));
         $stmt->execute();
         $user = $stmt->fetch();
 
-        if(password_verify($pass,$user['password'])){
+        if(password_verify($password,$user['password'])){
 
             $payload = [
                 'iat' => time(),

@@ -13,6 +13,8 @@ $data = json_decode(file_get_contents("php://input"));
         $email = $data->email;
         $pass = $data->password;
 
+        echo $email;
+        echo $pass;
 
         try{
         $stmt = $this->dbConn->prepare("SELECT * FROM users WHERE email = :email");

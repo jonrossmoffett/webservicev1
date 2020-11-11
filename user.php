@@ -49,7 +49,7 @@
 
 
             if(empty($user)){
-                
+                echo " reached queory ";
                 $sql = 'INSERT INTO ' . $this->tableName . '(name, email , password,) VALUES(:name, :email, :password)';
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':name', $this->Name);

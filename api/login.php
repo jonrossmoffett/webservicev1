@@ -6,6 +6,8 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 
 $data = json_decode(file_get_contents("php://input"));
         
+        $validationErrors = [];
+        $isValidationError = false;
 
         //$email = $this->validateParameter('email',$this->param['email'], STRING);
         //$pass = $this->validateParameter('pass',$this->param['pass'], STRING);
@@ -13,8 +15,21 @@ $data = json_decode(file_get_contents("php://input"));
         $email = $data->email;
         $pass = $data->password;
 
-        echo $email;
-        echo $pass;
+        if(empty($email)){
+            array_push($validationErrors,"Please provide an email");
+            $isValidationError = true;
+        }
+        if(empty($password)){
+            array_push($validationErrors,"Please provide a password");
+            $isValidationError = true;
+        }
+
+        if($isValidationError){
+            header("content-type: application/json");
+            $response = json_encode(['errors' => $ValidationErrors ]);
+			echo $response;exit;
+        }
+
 
         try{
         $stmt = $this->dbConn->prepare("SELECT * FROM users WHERE email = :email");

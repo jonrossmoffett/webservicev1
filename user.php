@@ -50,11 +50,12 @@
 
             if(empty($user)){
                 echo " reached queory ";
-                $sql = 'INSERT INTO ' . $this->tableName . '(name, email , password) VALUES(:name, :email, :password)';
+                $sql = 'INSERT INTO ' . $this->tableName . '(name, email , password, created_at) VALUES(:name, :email, :password, :created_at)';
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':name', $this->Name);
                 $stmt->bindParam(':email', $this->Email);
                 $stmt->bindParam(':password', $this->Password);
+                $stmt->bindParam(':created_at',date('y-m-d'));
                 $stmt->execute();
 
                 $this->returnResponse(EMAIL_TAKEN,'User Created'); 

@@ -191,7 +191,9 @@ class Api extends Rest{
         }
 
         if($isValidationError == true){
-            $this->returnResponse2(VALIDATION_ERROR,$ValidationErrors);
+            header("content-type: application/json");
+			$response = json_encode($ValidationErrors);
+			echo $response;exit;
         }
 
         $user = new User;

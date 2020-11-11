@@ -1,4 +1,8 @@
 <?php
+include_once('database.php');
+
+$db = new database;
+$dbConn = $db->connect();
 
 class AuthTokenChecker{
 

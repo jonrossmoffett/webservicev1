@@ -26,7 +26,7 @@ class AuthTokenChecker{
                 echo "user not in database";exit;
             }
 
-            $this->userId = $payload->userId;
+            return $payload->userId;
         } catch (Exception $e) {
             echo $e->getMessage();exit;
         }

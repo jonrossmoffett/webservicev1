@@ -25,13 +25,13 @@ $Auth = ltrim($Auth,"Bearer"); */
 $authCheck = new AuthTokenChecker;
 $token = $authCheck->getBearerToken();
 
-$authCheck->validateToken($token);
+$uid = $authCheck->validateToken($token);
 
 try 
 {
-    $payload = JWT::decode($token,SECRETE_KEY,['HS256']);
+   
     $post = new Post;
-    $post->setCreatedBy($payload->userId);
+    $post->setCreatedBy($uid);
 
    try
    {

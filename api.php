@@ -194,11 +194,11 @@ class Api extends Rest{
         }
 
         if( strlen($password ) > 20 ) {
-            array_push($ValidationErrors,"Password too long!")  ;
+            array_push($ValidationErrors,"Password too long, needs to be less than 20 characters")  ;
         }
 
         if( strlen($password ) < 8 ) {
-            array_push($ValidationErrors,"Password too short!");
+            array_push($ValidationErrors,"Password too short, need to be more than 5 characters");
         }
 
         if( !preg_match("#[0-9]+#", $password ) ) {

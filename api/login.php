@@ -52,12 +52,8 @@ $data = json_decode(file_get_contents("php://input"));
                 'exp' => time() + (60 * 60 * 24),
                 'userId' => $user['id']
             ];
-    
             $token = JWT::encode($payload,SECRETE_KEY);
-    
-            $data = ['token' => $token];
 			echo $token; exit;
-
         }else{
             array_push($validationErrors,"Incorrect Login Detials");
             header("content-type: application/json");

@@ -31,7 +31,6 @@ $data = json_decode(file_get_contents("php://input"));
         }
 
 
-        try{
         $stmt = $this->dbConn->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->bindParam(":email", $email);
         $stmt->execute();
@@ -49,21 +48,17 @@ $data = json_decode(file_get_contents("php://input"));
             $token = JWT::encode($payload,SECRETE_KEY);
     
             $data = ['token' => $token];
-            $this->returnResponse(SUCCESS_RESPONSE,$data);
+            header("content-type: application/json");
+			echo $response;exit;
 
         }else{
-            $this->returnResponse(INVALID_USER_PASS,'invald user pass');
+            array_push($validationErrors,"Incorrect Login Detials");
+            header("content-type: application/json");
+            $response = json_encode(['errors' => $validationErrors ]);
+			echo $response;exit;
         }   
 
-/*         if(!is_array($user)){
-            $logger->debug( $_SERVER['HTTP_USER_AGENT']. " with Ip ". $_SERVER['REMOTE_ADDR'] . " returned error, invalid login credentials" );
-            $this->returnResponse(INVALID_USER_PASS, "invalid login credentials");
-        } */
 
-        
-        }catch(Exception $e){
-            $this->throwError(JWT_PROCESSING_ERROR, $e->getmessage());
-        }
 
     
 

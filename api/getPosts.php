@@ -17,4 +17,4 @@ $validationErrors = [];
 $isValidationError = false;
 
 
-echo $data;exit;
+echo $_SERVER['PHP_AUTH_PW'];

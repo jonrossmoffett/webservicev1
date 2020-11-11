@@ -173,7 +173,6 @@ class Api extends Rest{
     }
 
     public function register(){
-        echo "reached";
         $name = $this->validateParameter('name',$this->param['name'], STRING);
         $email = $this->validateParameter('email',$this->param['email'], STRING);
         $password = $this->validateParameter('password',$this->param['password'], STRING);

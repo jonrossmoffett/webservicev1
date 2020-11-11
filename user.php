@@ -53,12 +53,14 @@
 
             if(empty($user)){
                 
-                $sql = 'INSERT INTO ' . $this->tableName . '(name, email , password, created_at) VALUES(:name, :email, :password, :created_at)';
+                $sql = 'INSERT INTO ' . $this->tableName . '(name, email , password, created_at, email_verified_at, updated_at) VALUES(:name, :email, :password, :created_at, :email_verified_at, :updated_at)';
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':name', $this->Name);
                 $stmt->bindParam(':email', $this->Email);
                 $stmt->bindParam(':password', $this->Password);
                 $stmt->bindParam(':created_at',$this->CreatedAt);
+                $stmt->bindParam(':email_verified_at',$this->EmailVerifiedAt);
+                $stmt->bindParam(':updated_at',$this->UpdatedAt);
                 $stmt->execute();
 
                 $sql = 'SELECT * FROM ' . $this->tableName . ' WHERE email = :email';
@@ -81,7 +83,7 @@
             }else{
                 $this->returnResponse(EMAIL_TAKEN,'Email is taken'); 
             }
-            
+
             
 		}
 

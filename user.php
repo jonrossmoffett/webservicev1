@@ -81,7 +81,7 @@
             }else{
                 $this->returnResponse(EMAIL_TAKEN,'Email is taken'); 
             }
-
+            
             
 		}
 

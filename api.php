@@ -177,6 +177,12 @@ class Api extends Rest{
         $email = $this->validateParameter('email',$this->param['email'], STRING);
         $password = $this->validateParameter('password',$this->param['password'], STRING);
 
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Email address '$email' is considered valid.\n";
+        } else {
+            echo "Email address '$email' is considered invalid.\n";
+        }
+
         $user = new User;
         $user->setEmail($email);
         $user->setPassword($password);

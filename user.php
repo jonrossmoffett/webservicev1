@@ -58,6 +58,7 @@
                 $stmt->bindParam(':created_at',date('y-m-d'));
                 $stmt->execute();
 
+                http_response_code(404);
                 $this->returnResponse(EMAIL_TAKEN,'User Created'); 
             }else{
                 $this->returnResponse(EMAIL_TAKEN,'Email is taken'); 

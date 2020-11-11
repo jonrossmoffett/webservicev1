@@ -1,6 +1,6 @@
 <?php
 
-class AuthToken{
+class AuthTokenChecker{
 
     public function validateToken() {
         try {

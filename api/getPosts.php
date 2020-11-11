@@ -16,15 +16,35 @@ $data = json_decode(file_get_contents("php://input"));
 $validationErrors = [];
 $isValidationError = false;
 
-
-$headers = apache_request_headers();
-
+/* $headers = apache_request_headers();
 $Auth = $headers['Authorization'];
-$Auth = ltrim($Auth,"Bearer");
+$Auth = ltrim($Auth,"Bearer"); */
 
 
-$authCheck = new AuthToken;
+$authCheck = new AuthTokenChecker;
+$token = $authCheck->getBearerToken();
+$authCheck->validateToken();
 
-$Auth = $authCheck->getBearerToken();
+try 
+{
+    $payload = JWT::decode($token,SECRETE_KEY,['HS256']);
+    $post = new Post;
+    $post->setCreatedBy($payload->userId);
 
-echo $Auth;exit;
+   try
+   {
+       $data = $post->getAllPosts();
+       $message = $data;
+   }
+   catch(Exception $e)
+   {
+       $message = $e->getMessage();
+   }
+
+    echo $message;exit;
+
+}
+catch(Exception $e)
+{
+   echo $e->getmessage();exit;
+}

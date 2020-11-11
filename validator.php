@@ -10,7 +10,7 @@ class Validator {
 
         if($required == true && empty($value) == true){
             array_push($this->ValidationErrors,"paramaters missing ");
-            $isValidationError = true;
+            $this->isValidationError = true;
             $this->response(403, $this->ValidationErrors);
             //$this->response(403,"paramaters missing ");
         }
@@ -18,26 +18,26 @@ class Validator {
             case BOOLEAN:
                 if(!is_bool($value)){
                     array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
-                    $isValidationError = true;
+                    $this->isValidationError = true;
             }
             break;
             case INTEGER:
                 if(!is_numeric($value)){
                     array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
-                    $isValidationError = true;
+                    $this->isValidationError = true;
                 }
             break;
             case STRING:
                 if(!is_string($value)){
                     array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
-                    $isValidationError = true;
+                    $this->isValidationError = true;
                 }
             break;
             case PASSWORD:
                     $this->validatePassword($value);
                     if(!is_string($value)){
                         array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
-                        $isValidationError = true;
+                        $this->isValidationError = true;
                     }
             break;
             case EMAIL:

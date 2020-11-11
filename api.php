@@ -182,7 +182,7 @@ class Api extends Rest{
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $isValidationError = true;
-            array_push($ValidationErrors,"Email address '$email' is considered valid.\n");
+            array_push($ValidationErrors,"Email address '$email' is an invalid email.\n");
         } 
         if (strlen($name) > 50) {
             $isValidationError = true;
@@ -193,7 +193,7 @@ class Api extends Rest{
 
         if($isValidationError == true){
             header("content-type: application/json");
-			$response = json_encode(['errors' => [['error' => $ValidationErrors[0]],['error' => $ValidationErrors[0]]] ]);
+			$response = json_encode(['errors' => [['error' => $ValidationErrors[0]],['error' => $ValidationErrors[1]]] ]);
 			echo $response;exit;
         }
 

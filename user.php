@@ -44,14 +44,17 @@
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_OBJ);
 
+            echo "reached 2";
+
             if(empty($user)){
                 $this->returnResponse(EMAIL_TAKEN,'Email is free'); 
             }else{
                 $this->returnResponse(EMAIL_TAKEN,'Email is taken'); 
             }
 
+            echo "reached 3";
 
-
+/* 
 			$sql = 'INSERT INTO ' . $this->tableName . '(title, description, user_id, status , created_at, updated_at) VALUES(:title, :description, :user_id , :status, :created_at, :updated_at)';
 
 			$stmt = $this->dbConn->prepare($sql);
@@ -66,7 +69,8 @@
 				return true;
 			} else {
 				return false;
-			}
+            } */
+            
 		}
 
 

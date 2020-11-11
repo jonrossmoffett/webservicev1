@@ -1,7 +1,7 @@
 <?php
 include_once('../database.php');
 include_once('../jwt.php');
-
+include_once('../authToken.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -21,5 +21,10 @@ $headers = apache_request_headers();
 
 $Auth = $headers['Authorization'];
 $Auth = ltrim($Auth,"Bearer");
+
+
+$authCheck = new AuthToken;
+
+$Auth = $authCheck->getAuthorizationHeader();
 
 echo $Auth;exit;

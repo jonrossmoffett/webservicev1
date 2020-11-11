@@ -66,11 +66,11 @@
                 $user = $stmt->fetch();
                 $id = $user['id'];
 
-                $sql = 'INSERT INTO role_user (user_id, user_type) VALUES(:user_id, :user_type)'; 
+/*                 $sql = 'INSERT INTO role_user (user_id, user_type) VALUES(:user_id, :user_type)'; 
                 $stmt = $this->dbConn->prepare($sql);
                 $stmt->bindParam(':user_id', $id );
                 $stmt->bindParam(':user_type', 'App\Models\User');
-                $stmt->execute();
+                $stmt->execute(); */
 
                 //http_response_code(404);
                 $this->returnResponse(EMAIL_TAKEN,'User Created'); 

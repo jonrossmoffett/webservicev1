@@ -111,7 +111,9 @@
 			$owner = $post;
 
 			if(empty($owner)){
-				echo "no such post exists";exit;
+				$message = "Post does not exist";
+				$response = json_encode(['error' => $message]);
+				echo $response;exit;
 			}else{
 
 				if($post->user_id == $this->createdBy){
@@ -127,7 +129,9 @@
 						return false;
 					}
 				}else{
-					echo "you do not own the post";exit;
+					$message = "You do not own the post";
+					$response = json_encode(['error' => $message]);
+    				echo $response;exit;
 				}
 
 			}

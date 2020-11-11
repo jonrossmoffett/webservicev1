@@ -65,7 +65,7 @@ class Validator {
             }
         }
 
-        if ($min > 0 && $max == 0){
+/*         if ($min > 0 && $max == 0){
             if(strlen($value) < $min){
                 array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
                 $isValidationError = true;
@@ -77,7 +77,7 @@ class Validator {
                 array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $min);
                 $isValidationError = true;
             }
-        }
+        } */
     
         if($isValidationError == true){
             $this->response(403, $this->ValidationErrors);

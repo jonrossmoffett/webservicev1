@@ -164,6 +164,17 @@ class Api extends Rest{
 
         $this->returnResponse(SUCCESS_RESPONSE,$message);
 
+    }
+
+    public function register(){
+
+        $name = $this->validateParameter('name',$this->param['name'], STRING);
+        $email = $this->validateParameter('email',$this->param['email'], STRING);
+        $password = $this->validateParameter('password',$this->param['password'], STRING);
+
+        $user = new User;
+        $user->setEmail($email);
+        $user->insert();
 
     }
 

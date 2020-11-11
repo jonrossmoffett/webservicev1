@@ -2,6 +2,7 @@
 
 	/*Security*/
 	define('SECRETE_KEY', 'test123');
+	define('EMAIL_TAKEN', 						    98);
     define('NOT_OWN_POST', 						    99);
 	/*Data Type*/
 	define('BOOLEAN', 	'1');

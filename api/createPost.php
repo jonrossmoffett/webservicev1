@@ -21,11 +21,12 @@ $isValidationError = false;
 /* $headers = apache_request_headers();
 $Auth = $headers['Authorization'];
 $Auth = ltrim($Auth,"Bearer"); */
-$validator = new Validator;
+
 
 $title = $data->title;
 $description = $data->description;
 
+$validator = new Validator;
 $validator->validateParameter('Title',$title,STRING,'200','5',TRUE,FALSE,FALSE);
 $validator->validateParameter('Description',$description,STRING,'200','5',TRUE,FALSE,FALSE);
 

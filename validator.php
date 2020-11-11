@@ -43,12 +43,12 @@ class Validator {
         }
 
         if(strlen($value) > $max){
-            array_push($this->ValidationErrors,"Max length for field " .$fieldName . "is " . $max);
+            array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $max);
             $isValidationError = true;
         }
 
         if(strlen($value) < $min){
-            array_push($this->ValidationErrors,"Min length for field " .$fieldName . "is " . $min);
+            array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
             $isValidationError = true;
         }
         

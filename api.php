@@ -190,8 +190,8 @@ class Api extends Rest{
             $ValidationErrors["errors"]["name needs to be less than 50 characters"];
         }
 
-        if($isValidationError){
-            $this->returnResponse(VALIDATION_ERROR,$isValidationError);
+        if($isValidationError == true){
+            $this->returnResponse(VALIDATION_ERROR,$ValidationErrors);
         }
 
         $user = new User;

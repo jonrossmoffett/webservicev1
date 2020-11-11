@@ -31,7 +31,7 @@ class Validator {
             case STRING:
                 if(!is_string($value)){
                     //$this->response(403, "data type is not valid for" . $fieldName);
-                    array_push($this->ValidationErrors,"data typeis not valid for " .$fieldName);
+                    array_push($this->ValidationErrors,"data type is not valid for " .$fieldName);
                     $isValidationError = true;
                 }
             break;
@@ -50,6 +50,20 @@ class Validator {
     
             if(strlen($value) < $min){
                 array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
+                $isValidationError = true;
+            }
+        }
+
+        if ($min > 0 && $max == 0){
+            if(strlen($value) < $min){
+                array_push($this->ValidationErrors,"Min length for field " .$fieldName . " is: " . $min);
+                $isValidationError = true;
+            }
+        }
+
+        if ($min == 0 && $max > 0){
+            if(strlen($value) < $min){
+                array_push($this->ValidationErrors,"Max length for field " .$fieldName . " is: " . $min);
                 $isValidationError = true;
             }
         }

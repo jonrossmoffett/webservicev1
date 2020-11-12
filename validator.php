@@ -1,6 +1,7 @@
 <?php
 include_once('constants.php');
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 if (isset($_SERVER["HTTP_ORIGIN"])) {
     header("Access-Control-Allow-Origin: {$_SERVER["HTTP_ORIGIN"]}");
@@ -18,6 +19,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
 
 class Validator {
 
+    
     public $ValidationErrors = [];
     public $isValidationError = false;
 
@@ -125,9 +127,15 @@ class Validator {
     }
 
     public function response($code,$message){
-        http_response_code($code);
-        $response = json_encode(['errors' => $message]);
-        echo $response;
+        $request = Request::createFromGlobals();
+        $response = new Response();
+
+        $response->setContent(json_encode(['errors' => $message]));
+        $response->headers->set('Content-Type', 'application/json');
+        $response->setStatusCode($code);
+        $response->prepare($request);
+        $response->send();
+
     }
 
     public function validateRequestType($requestType){

@@ -4,6 +4,7 @@ include_once('../jwt.php');
 include_once('../constants.php');
 include_once('../validator.php');
 
+use Symfony\Component\HttpFoundation\Request;
 
 //header('Access-Control-Allow-Origin: *');
 //header('Content-Type: application/json');
@@ -15,7 +16,6 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Max-Age: 0");
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With,Referer,User-Agent,Access-Control-Allow-Origin');
-    http_response_code(200);
   }
   if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
     if (isset($_SERVER["HTTP_ACCESS_CONTROL_REQUEST_METHOD"])) header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -23,7 +23,6 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
     http_response_code(200);
   }
   header("Content-Type: application/json; charset=UTF-8");
-  http_response_code(200);
 
 
         $db = new database;

@@ -55,7 +55,7 @@ try
    {
        $message = $e->getMessage();
    }
-    $response = $response = json_encode(['posts' => $message]);
+    $response = $response = json_encode([$message]);
     echo $response;exit;
 }
 catch(Exception $e)

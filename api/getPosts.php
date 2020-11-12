@@ -50,7 +50,7 @@ $response->headers->set('Access-Control-Allow-Origin', '*');
 $response->headers->set('Access-Control-Allow-Credentials', 'true');
 $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 $response->headers->set('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With,Referer,User-Agent,Access-Control-Allow-Origin');
-$response->setStatusCode(401);
+$response->setStatusCode(403);
 $response->prepare($request);
 $response->send();
 

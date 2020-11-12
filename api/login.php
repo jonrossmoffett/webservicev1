@@ -54,7 +54,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
                 'userId' => $user['id']
             ];
             $token = JWT::encode($payload,SECRETE_KEY);
-			echo $token; exit;
+			  var_dump($token) ; exit;
         }else{
             array_push($validationErrors,"Incorrect Login Detials");
             header("content-type: application/json");

@@ -125,7 +125,8 @@ class Validator {
     }
 
     public function response($code,$message){
-        http_response_code($code);
+        //http_response_code($code);
+        header('HTTP/1.0 400 Unauthorized');
         $response = json_encode(['errors' => $message]);
         echo $response;exit;
     }

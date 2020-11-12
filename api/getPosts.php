@@ -4,6 +4,11 @@ include_once('../jwt.php');
 include_once('../authToken.php');
 include_once('../post.php');
 include_once('../validator.php');
+include_once('../vendor/autoload.php');
+
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /* header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -34,8 +39,16 @@ $dbConn = $db->connect();
 $Auth = $headers['Authorization'];
 $Auth = ltrim($Auth,"Bearer"); */
 
-$validator = new Validator;
-$validator->validateRequestType('GET');
+$request = Request::createFromGlobals();
+$response = new Response();
+
+$response->setContent(json_encode([
+  'Method' => $request->method,
+]));
+$response->headers->set('Content-Type', 'application/json');
+$response->setStatusCode(200);
+$response->prepare($request);
+$response->send();
 
 $authCheck = new AuthTokenChecker;
 $token = $authCheck->getBearerToken();

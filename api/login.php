@@ -22,17 +22,12 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
   header("Content-Type: application/json; charset=UTF-8");
 
 
-        $db = new database;
+
+/*         $db = new database;
         $dbConn = $db->connect();
 
         $data = json_decode(file_get_contents("php://input"));
         
-        $validationErrors = [];
-        $isValidationError = false;
-
-        //$email = $this->validateParameter('email',$this->param['email'], STRING);
-        //$pass = $this->validateParameter('pass',$this->param['pass'], STRING);
-
         $email = $data->email;
         $password = $data->password;
 
@@ -63,7 +58,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
             $response = json_encode(['errors' => $validationErrors ]);
 			echo $response;exit;
         }   
-
+ */
 
 
     

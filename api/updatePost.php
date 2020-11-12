@@ -7,27 +7,23 @@ include_once('../validator.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: PUT');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
+
+$validator = new Validator;
+$validator->validateRequestType('PATCH');
 
 $db = new database;
 $dbConn = $db->connect();
 
 $data = json_decode(file_get_contents("php://input"));
 
-$validationErrors = [];
-$isValidationError = false;
-
-/* $headers = apache_request_headers();
-$Auth = $headers['Authorization'];
-$Auth = ltrim($Auth,"Bearer"); */
-
 
 $title = $data->title;
 $description = $data->description;
 $postId = $data->postId;
 
-$validator = new Validator;
+
 $validator->validateParameter('Title',$title,STRING,'200','5');
 $validator->validateParameter('Description',$description,STRING,'200','5');
 $validator->validateParameter('PostId',$postId,INTEGER);
@@ -41,6 +37,7 @@ try
 {
     $post = new Post;
 
+    $post->setId($postId);
     $post->setTitle($title);
     $post->setDescription($description);
     $post->setStatus(0);
@@ -50,8 +47,8 @@ try
 
     try
     {
-        $post->insert();
-        $message = "inserted post into database";
+        $post->updatePost();
+        $message = "Updated post";
     }
     catch(Exception $e)
     {

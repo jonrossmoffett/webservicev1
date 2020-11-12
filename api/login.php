@@ -23,7 +23,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
     http_response_code(200);
   }
   header("Content-Type: application/json; charset=UTF-8");
-
+  http_response_code(200);
 
 
         $db = new database;

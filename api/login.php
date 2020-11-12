@@ -59,7 +59,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
 
         $request = Request::createFromGlobals();
         $response = new Response();
-        $response->setContent(json_encode([$token]));
+        $response->setContent(json_encode($token));
         $response->headers->set('Content-Type', 'application/json');
         $response->setStatusCode(200);
         $response->prepare($request);

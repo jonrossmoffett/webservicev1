@@ -1,6 +1,9 @@
 <?php
 include_once('constants.php');
+include_once('./vendor/autoload.php');
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 if (isset($_SERVER["HTTP_ORIGIN"])) {
     header("Access-Control-Allow-Origin: {$_SERVER["HTTP_ORIGIN"]}");
@@ -18,8 +21,6 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
 
 class Validator {
 
-    use Symfony\Component\HttpFoundation\Request;
-    use Symfony\Component\HttpFoundation\Response;
     
     public $ValidationErrors = [];
     public $isValidationError = false;

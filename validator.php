@@ -123,7 +123,7 @@ class Validator {
         }
         
         if($this->isValidationError == true){
-            $this->response(400, $this->ValidationErrors);
+            $this->response(200, $this->ValidationErrors);
         }
 
     }

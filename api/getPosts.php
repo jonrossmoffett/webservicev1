@@ -43,7 +43,7 @@ $request = Request::createFromGlobals();
 $response = new Response();
 
 $response->setContent(json_encode([
-  'Method' => $request->method,
+  'Method' => $request->query,
 ]));
 $response->headers->set('Content-Type', 'application/json');
 $response->setStatusCode(200);

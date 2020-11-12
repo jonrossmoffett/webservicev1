@@ -118,7 +118,7 @@ class Validator {
     public function validateRequestType($requestType){
 
         if ($requestType !== 'GET'){
-            if($_SERVER['CONTENT_TYPE'] !== 'application/json'){
+            if($_SERVER['CONTENT_TYPE'] !== 'application/json' || $_SERVER['CONTENT_TYPE'] !== 'application/json; charset=UTF-8;'){
                 array_push($this->ValidationErrors,"Content type is not application/json");
                 $this->isValidationError = true;
             } 

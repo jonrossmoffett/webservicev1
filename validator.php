@@ -130,13 +130,11 @@ class Validator {
     public function response($code,$message){
         $request = Request::createFromGlobals();
         $response = new Response();
-
         $response->setContent(json_encode(['errors' => $message]));
         $response->headers->set('Content-Type', 'application/json');
         $response->setStatusCode($code);
         $response->prepare($request);
         $response->send();
-
     }
 
     public function validateRequestType($requestType){
@@ -149,7 +147,7 @@ class Validator {
         if($this->isValidationError == true){
             $this->response(400, $this->ValidationErrors);
         }
-        
+
         return;
     }
 

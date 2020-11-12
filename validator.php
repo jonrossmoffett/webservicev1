@@ -115,5 +115,25 @@ class Validator {
         echo $response;exit;
     }
 
+    public function validateRequestType($requestType){
+
+        if ($requestType !== 'GET'){
+            if($_SERVER['CONTENT_TYPE'] !== 'application/json'){
+                array_push($this->ValidationErrors,"Content type is not application/json");
+                $this->isValidationError = true;
+            } 
+        }
+
+        if($_SERVER['REQUEST_METHOD'] !== $requestType){
+            array_push($this->ValidationErrors,"Request type is not ". $requestType );
+            $this->isValidationError = true;
+        }
+        
+        if($this->isValidationError == true){
+            $this->response(403, $this->ValidationErrors);
+        }
+
+    }
+
 
 }

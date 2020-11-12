@@ -4,6 +4,7 @@ include_once('../jwt.php');
 include_once('../authToken.php');
 include_once('../post.php');
 include_once('../validator.php');
+include_once('../user.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');

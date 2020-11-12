@@ -73,32 +73,38 @@
             $post = $stmt1->fetch(PDO::FETCH_OBJ);
 
 
-            if($owner = $post->user_id !== $this->createdBy){
-                $this->returnResponse(NOT_OWN_POST,"you do not have access to this post");
-            }
+            if($post->user_id == $this->createdBy){
+				$sql = "UPDATE $this->tableName SET";
+				if( null != $this->getTitle()) {
+					$sql .=	" title = '" . $this->getTitle() . "',";
+				}
+	
+				if( null != $this->getDescription()) {
+					$sql .=	" description = '" . $this->getDescription() . "',";
+				}
+	
+				$sql .=	"updated_at = :updatedAt
+						WHERE 
+							id = :userId";
+	
+				$stmt = $this->dbConn->prepare($sql);
+				$stmt->bindParam(':userId', $this->id);
+				$stmt->bindParam(':updatedAt', $this->updatedAt);
+				if($stmt->execute()) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			else
+			{
+				$message = "You do not own the post";
+				$response = json_encode(['error' => $message]);
+				echo $response;exit;
+			}
             
 			
-			$sql = "UPDATE $this->tableName SET";
-			if( null != $this->getTitle()) {
-				$sql .=	" title = '" . $this->getTitle() . "',";
-			}
 
-			if( null != $this->getDescription()) {
-				$sql .=	" description = '" . $this->getDescription() . "',";
-			}
-
-			$sql .=	"updated_at = :updatedAt
-					WHERE 
-						id = :userId";
-
-			$stmt = $this->dbConn->prepare($sql);
-			$stmt->bindParam(':userId', $this->id);
-			$stmt->bindParam(':updatedAt', $this->updatedAt);
-			if($stmt->execute()) {
-				return true;
-			} else {
-				return false;
-			}
 		}
 
 		public function delete() {

@@ -45,7 +45,11 @@ $response = new Response();
 $response->setContent(json_encode([
   'Method' => $request->query,
 ]));
-$response->headers->set('Content-Type', 'application/json');
+$response->headers->set('Content-Type', 'application/json; charset=UTF-8');
+$response->headers->set('Access-Control-Allow-Origin', '*');
+$response->headers->set('Access-Control-Allow-Credentials', 'true');
+$response->headers->set('Access-Control-Max-Age', '0');
+$response->headers->set('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With,Referer,User-Agent,Access-Control-Allow-Origin');
 $response->setStatusCode(400);
 $response->prepare($request);
 $response->send();

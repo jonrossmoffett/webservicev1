@@ -59,10 +59,12 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
         
         }
         else
-        {
+        {   
+            $errors = [];
+            array_push($errors,'Incorrect Login Detials');
             $request = Request::createFromGlobals();
             $response = new Response();
-            $response->setContent(json_encode(['errors' => 'Incorrect Login Detials']));
+            $response->setContent(json_encode(['errors' => $errors]));
             $response->headers->set('Content-Type', 'application/json');
             $response->setStatusCode(400);
             $response->prepare($request);

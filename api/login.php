@@ -4,7 +4,7 @@ include_once('../jwt.php');
 include_once('../constants.php');
 include_once('../validator.php');
 
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://vuepwa-b0048.web.app');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Credentials: true');

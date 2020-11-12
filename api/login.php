@@ -23,9 +23,8 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
   }
   header("Content-Type: application/json; charset=UTF-8");
 
-  echo 'reached';exit;
 
-/*         $db = new database;
+        $db = new database;
         $dbConn = $db->connect();
 
         $data = json_decode(file_get_contents("php://input"));
@@ -60,7 +59,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
             $response = json_encode(['errors' => $validationErrors ]);
 			echo $response;exit;
         }   
- */
+
 
 
     

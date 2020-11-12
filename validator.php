@@ -149,7 +149,7 @@ class Validator {
         if($this->isValidationError == true){
             $this->response(400, $this->ValidationErrors);
         }
-
+        return;
     }
 
 

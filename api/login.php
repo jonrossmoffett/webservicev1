@@ -4,12 +4,11 @@ include_once('../jwt.php');
 include_once('../constants.php');
 include_once('../validator.php');
 
-header('Access-Control-Allow-Origin: https://vuepwa-b0048.web.app');
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Credentials: true');
 //header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
-header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin");
+//header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin");
 
 
         $db = new database;

@@ -46,7 +46,7 @@ $response->setContent(json_encode([
   'Method' => $request->query,
 ]));
 $response->headers->set('Content-Type', 'application/json');
-$response->setStatusCode(200);
+$response->setStatusCode(400);
 $response->prepare($request);
 $response->send();
 

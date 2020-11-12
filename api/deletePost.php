@@ -7,24 +7,21 @@ include_once('../validator.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: DELETE');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 
+$validator = new Validator;
+$validator->validateRequestType('DELETE');
 $db = new database;
 $dbConn = $db->connect();
-
 $data = json_decode(file_get_contents("php://input"));
 
-$validationErrors = [];
-$isValidationError = false;
 
 /* $headers = apache_request_headers();
 $Auth = $headers['Authorization'];
 $Auth = ltrim($Auth,"Bearer"); */
 
 $postId = $data->postId;
-
-$validator = new Validator;
 $validator->validateParameter('PostId',$postId,INTEGER);
 
 

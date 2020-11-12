@@ -3,6 +3,7 @@ include_once('../database.php');
 include_once('../jwt.php');
 include_once('../constants.php');
 include_once('../validator.php');
+include_once('../user.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');

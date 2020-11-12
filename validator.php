@@ -11,7 +11,7 @@ class Validator {
         if($required == true && empty($value) == true){
             array_push($this->ValidationErrors,"paramaters missing ");
             $this->isValidationError = true;
-            $this->response(400, $this->ValidationErrors);
+            $this->response(200, $this->ValidationErrors);
             //$this->response(403,"paramaters missing ");
         }
         switch($dataType){

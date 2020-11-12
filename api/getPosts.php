@@ -19,7 +19,6 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Max-Age: 0");
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With,Referer,User-Agent,Access-Control-Allow-Origin');
-    http_response_code(200);
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {

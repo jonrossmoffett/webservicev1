@@ -50,9 +50,6 @@ $response->setContent(json_encode([
   'Method' => $request->query,
 ]));
 $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-$response->headers->set('Access-Control-Allow-Credentials', 'true');
-$response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-$response->headers->set('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With,Referer,User-Agent,Access-Control-Allow-Origin');
 $response->setStatusCode(403);
 $response->prepare($request);
 $response->send();

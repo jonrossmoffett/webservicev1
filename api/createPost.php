@@ -10,23 +10,18 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 
+$validator = new Validator;
+$validator->validateRequestType('POST');
+
 $db = new database;
 $dbConn = $db->connect();
 
 $data = json_decode(file_get_contents("php://input"));
 
-$validationErrors = [];
-$isValidationError = false;
-
-/* $headers = apache_request_headers();
-$Auth = $headers['Authorization'];
-$Auth = ltrim($Auth,"Bearer"); */
-
-
 $title = $data->title;
 $description = $data->description;
 
-$validator = new Validator;
+
 $validator->validateParameter('Title',$title,STRING,'200','5');
 $validator->validateParameter('Description',$description,STRING,'200','5');
 

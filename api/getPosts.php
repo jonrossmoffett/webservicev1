@@ -43,16 +43,8 @@ $dbConn = $db->connect();
 $Auth = $headers['Authorization'];
 $Auth = ltrim($Auth,"Bearer"); */
 
-$request = Request::createFromGlobals();
-$response = new Response();
-
-$response->setContent(json_encode([
-  'Method' => $request->query,
-]));
-$response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-$response->setStatusCode(403);
-$response->prepare($request);
-$response->send();
+$validator = new Validator;
+$validator->validateRequestType('GET');
 
 $authCheck = new AuthTokenChecker;
 $token = $authCheck->getBearerToken();

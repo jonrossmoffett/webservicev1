@@ -54,16 +54,13 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
             ];
             $token = JWT::encode($payload,SECRETE_KEY);
           
-        //$var = json_encode($token) ;   
-        //echo $var ; exit;
-
-        $request = Request::createFromGlobals();
-        $response = new Response();
-        $response->setContent(json_encode($token));
-        $response->headers->set('Content-Type', 'application/json');
-        $response->setStatusCode(200);
-        $response->prepare($request);
-        $response->send();
+            $request = Request::createFromGlobals();
+            $response = new Response();
+            $response->setContent(json_encode($token));
+            $response->headers->set('Content-Type', 'application/json');
+            $response->setStatusCode(200);
+            $response->prepare($request);
+            $response->send();
 
         }
         else

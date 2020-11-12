@@ -15,7 +15,7 @@ header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 if($_SERVER['REQUEST_METHOD'] !== 'OPTIONS'){
-    header('HTTP/1.1 200 ok');
+    http_response_code(200);
 }
 
         $db = new database;

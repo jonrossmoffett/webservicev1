@@ -1,7 +1,6 @@
 {
     "require": {
         "firebase/php-jwt": "^5.2",
-        "bandwidth-throttle/token-bucket": "^2.0",
         "katzgrau/klogger": "^1.2",
         "symfony/http-foundation": "^5.1"
     }

@@ -25,7 +25,7 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
   }
   header("Content-Type: application/json; charset=UTF-8");
         $validator = new Validator;
-        $validator->validateRequestType('PUT');
+        $validator->validateRequestType('POST');
         $db = new database;
         $dbConn = $db->connect();
         $data = json_decode(file_get_contents("php://input"));

@@ -99,7 +99,7 @@ include_once('jwt.php');
             }
             else
             {
-                $this->validator->response(400,'Email is taken');
+                $this->validator->response(400,['Email is taken']);
             }
 
             

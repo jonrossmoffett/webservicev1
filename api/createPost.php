@@ -56,8 +56,8 @@ try
     $post->setDescription($description);
     $post->setStatus(0);
     $post->setCreatedBy($uid);
-    $post->setCreatedAt(date('Y-m-d'));
-    $post->setUpdatedAt(date('Y-m-d'));
+    $post->setCreatedAt(date('Y-m-d h:i:sa'));
+    $post->setUpdatedAt(date('Y-m-d h:i:sa'));
 
     try
     {

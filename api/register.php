@@ -43,9 +43,9 @@ if (isset($_SERVER["HTTP_ORIGIN"])) {
             $user->setEmail($email);
             $user->setPassword($password);
             $user->setName($name);
-            $user->setCreatedAt(date('Y-m-d'));
-            $user->setEmailVerifiedAt(date('Y-m-d'));
-            $user->setUpdatedAt(date('Y-m-d'));
+            $user->setCreatedAt(date('Y-m-d h:i:sa'));
+            $user->setEmailVerifiedAt(date('Y-m-d h:i:sa'));
+            $user->setUpdatedAt(date('Y-m-d h:i:sa'));
             $user->insert();
             $message = "inserted post into database";
         }catch(Exception $e){

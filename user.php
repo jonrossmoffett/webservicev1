@@ -94,7 +94,7 @@ include_once('jwt.php');
                     'userId' => $this->id
                 ];
                 $token = JWT::encode($payload,SECRETE_KEY);
-                $this->validator->response(200,$token);
+                $this->validator->responseSuccess(200,$token);
             
             }
             else

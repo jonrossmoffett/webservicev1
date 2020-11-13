@@ -137,6 +137,16 @@ class Validator {
         $response->send();
     }
 
+    public function responseSuccess($code,$message){
+        $request = Request::createFromGlobals();
+        $response = new Response();
+        $response->setContent(json_encode($message));
+        $response->headers->set('Content-Type', 'application/json');
+        $response->setStatusCode($code);
+        $response->prepare($request);
+        $response->send();
+    }
+
     public function validateRequestType($requestType){
 
         if($_SERVER['REQUEST_METHOD'] !== $requestType){
